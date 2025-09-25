@@ -12,6 +12,7 @@ console.log(b + c);
 console.log(b * c);
 console.log(8 % b);
 
+// eslint-disable-next-line prefer-const
 abc = c + ' ' + d + ' ' + sum;
 console.log(abc);
 
@@ -30,12 +31,12 @@ number--;
 console.log(number);
 
 number += 9;
-number *=10;
+number *= 10;
 console.log(number);
 
-let finalResult = d + ' ' + 'is' + ' ' + number;
+const finalResult = d + ' ' + 'is' + ' ' + number;
 console.log(finalResult);
 
-const s = 5 + "10";
+const s = 5 + '10';
 console.log(typeof s);
 console.log(s);

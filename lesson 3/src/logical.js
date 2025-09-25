@@ -3,7 +3,8 @@ const b = 3;
 const c = '3';
 const d = 'number';
 let abc;
-let sum = a + b;
+const sum = a + b;
+
 console.log(sum);
 console.log(a <= sum);
 console.log(a === b);
@@ -12,12 +13,23 @@ console.log(b == c);
 console.log(b === c);
 console.log(sum !== a);
 
-console.log("----------");
+console.log('----------');
 
-const bool = Boolean("false");
+const bool = Boolean('false');
 console.log(bool);
 
-let dogHungry = false;
-let catThirsty = true;
+const dogHungry = false;
+const catThirsty = false;
 
 console.log(catThirsty == dogHungry);
+
+if (catThirsty === true && dogHungry === true) {
+    console.log('Feed the animals!');
+} else if (catThirsty === false || dogHungry === true) {
+    console.log('still feed the animals');
+} else if (catThirsty === true) {
+    console.log('Pure some water');
+} else {
+    console.log('Animals are fed up! :P');
+}
+
