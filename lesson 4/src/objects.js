@@ -6,28 +6,48 @@ School = {
         subject2: 'history',
         subject3: 'geography'
     },
-    students: {
-        first: {
-            name: 'Martha',
-            favoriteSubject: 'geography'
+    students: [
+        {
+            first: [
+                {
+                    name: 'Martha',
+                    favoriteSubject: 'geography'
+                }
+            ]
         },
-        second: {
-            name: 'John',
-            favoriteSubject: 'math'
+        {
+            second: [
+                {
+                    name: 'John',
+                    favoriteSubject: 'math'
+                }
+            ]
         }
-    },
+    ],
+
     showSubjects() {
         console.log(this.subjects.subject1);
         console.log(this.subjects.subject2);
         console.log(this.subjects.subject3);
     },
-    getStudentsFavSubjects() {
-        console.log('Favorite subject of ' + this.students.first.name + ' is ' + this.students.first.favoriteSubject);
-        console.log('Favorite subject of ' + this.students.second.name + ' is ' + this.students.second.favoriteSubject);
-    }
 
+    getStudentsFavSubjects() {
+        console.log(
+            'Favorite subject of ' +
+            this.students[0].first[0].name +
+            ' is ' +
+            this.students[0].first[0].favoriteSubject
+        );
+        console.log(
+            'Favorite subject of ' +
+            this.students[1].second[0].name +
+            ' is ' +
+            this.students[1].second[0].favoriteSubject
+        );
+    }
 };
 
+console.log(School.students[0].first[0].name);
 School.showSubjects();
 School.getStudentsFavSubjects();
 
