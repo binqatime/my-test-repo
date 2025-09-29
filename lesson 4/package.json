@@ -1,7 +1,7 @@
 {
-  "name": "lesson-3",
+  "name": "lesson-4",
   "version": "1.0.0",
-  "description": "home work for lesson 3",
+  "description": "home work for lesson 4",
   "main": "index.js",
   "type": "module",
   "scripts": {

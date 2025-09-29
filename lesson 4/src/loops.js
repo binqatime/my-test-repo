@@ -30,11 +30,9 @@ console.log('-- for loop --');
 
 for (i = 0; i <= 9; i++) {
     console.log(i);
-};
+}
 
 let q;
 for (q = 100; q >= 0; q = q - 10) {
     console.log('q :' + q);
-};
-
-
+}
