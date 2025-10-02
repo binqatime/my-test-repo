@@ -1,4 +1,4 @@
-# Lesson 5 Functiona and Modules
+# Lesson 5 Functions, Arrow function and Modules
 
 In order to use this config you have to install the following NPM packages
 
