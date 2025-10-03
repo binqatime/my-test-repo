@@ -1,5 +1,7 @@
 const numbersArr = [12, 4, 67, 90, 100, 135];
 
+console.log(numbersArr.reduce((acc, element) => acc + element));
+
 function sumArrElements(arr) {
     let sum = 0;
     for (const num of arr) {

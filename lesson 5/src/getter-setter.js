@@ -4,11 +4,11 @@ School = {
     schoolName: 'High Secondary School',
     schoolRating: 8,
 
-    get() {
+    get rating() {
         return this.schoolRating;
     },
 
-    set(rating) {
+    set schoolRate(rating) {
         this.schoolRating = rating;
     },
 
@@ -51,6 +51,6 @@ School = {
 School.showSubjects();
 School.getStudentsFavSubjects();
 
-console.log(School.schoolRating);
-School.schoolRating = 10;
-console.log(School.schoolRating);
+console.log(School.rating);
+School.schoolRate = 10;
+console.log(School.rating);
