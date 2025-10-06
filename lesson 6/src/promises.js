@@ -3,27 +3,15 @@ function fetchSkywalkerData() {
         .then((response) => {
             return response.json();
         })
-        .then((data) => fetchData(data))
+        .then((data) => {
+            data;
+            const name = data.name;
+            const hairColor = data.hair_color;
+            const eyesColor = data.eye_color;
+            console.log('Skywalker discription goes here: ');
+            console.log(`This is ${name}, he is a super hero with ${hairColor} hair and ${eyesColor} eyes. Welcome!`);
+        })
         .catch((error) => console.log('Failed!' + error));
 }
 
-function fetchData(json) {
-    console.log(json);
-}
-
-console.log('------');
-
-function getToKnowSkywalker() {
-    // eslint-disable-next-line @stylistic/space-before-blocks
-    const data = fetchSkywalkerData().then(function (data) {
-        console.log(data);
-    });
-
-    const name = data.name;
-    const eyes = data.eye_color;
-    const hair = data.hair_color;
-
-    console.log(`get to know the super hero: ${name}! A strong man with ${hair} hair and ${eyes} eyes.`);
-}
-
-getToKnowSkywalker();
+fetchSkywalkerData();
