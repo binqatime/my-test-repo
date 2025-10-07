@@ -9,4 +9,4 @@ async function fetchSkywalkerData() {
     console.log(`Let me introduce super hero: ${name}! Yep, that man with ${eyes} eyes and ${hair} hair!`);
 }
 
-fetchSkywalkerData();
+await fetchSkywalkerData();
