@@ -29,5 +29,6 @@ lorry.updateSpecification(120);
 myGarage.driveVehicle(lorry);
 
 console.log('Got new car');
+van.updateSpecification(140, true);
 myGarage.driveVehicle(van);
 
