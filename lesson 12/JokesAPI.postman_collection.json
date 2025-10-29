@@ -1,0 +1,222 @@
+{
+	"info": {
+		"_postman_id": "48810faa-823d-408d-81ad-c72bf178b081",
+		"name": "JokesAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11345549",
+		"_collection_link": "https://www.postman.com/red-water-398981/workspace/my-workspace/collection/11345549-48810faa-823d-408d-81ad-c72bf178b081?action=share&source=collection_link&creator=11345549"
+	},
+	"item": [
+		{
+			"name": "get Random Joke",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"verify and get joke id and type\", function () {",
+							"    pm.response.to.have.status(200);",
+							"    const response = pm.response.json();",
+							"    const jokeType = pm.response.type;",
+							"    pm.expect(response.jokeType).to.not.be.null",
+							"    pm.collectionVariables.set(jokeType.value);",
+							"});",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/random",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"random"
+					]
+				},
+				"description": "User receives any single random joke"
+			},
+			"response": []
+		},
+		{
+			"name": "get 10 random jokes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Number of jokes\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.length).to.eql(10);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/random/10",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"random",
+						"10"
+					]
+				},
+				"description": "User receives 10 random jokes."
+			},
+			"response": []
+		},
+		{
+			"name": "get Programming jokes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Joke type is programming\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.type).to.eql(\"programming\");",
+							"});",
+							"",
+							"pm.test(\"Your test name\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.id).to.be.not.empty;",
+							"    pm.expect(jsonData.setup).to.be.not.NaN;",
+							"    pm.expect(jsonData.punchline).to.be.not.null;",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/programming/ten",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"programming",
+						"ten"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get joke by id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Check id and type\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.type).to.eql(\"general\");",
+							"    pm.expect(jsonData.id).to.eql(pm.collectionVariables.get(\"jokeId\"));",
+							"   ",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/{{jokeId}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"{{jokeId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": ""
+		},
+		{
+			"key": "jokeType",
+			"value": ""
+		},
+		{
+			"key": "jokeId",
+			"value": ""
+		}
+	]
+}
