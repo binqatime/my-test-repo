@@ -1,7 +1,0 @@
-{
-"extension": ["ts"],
-"require": ["tsx"],
-"spec": "mocha/specs/**/*.spec.ts",
-"retries": 2,
-"timeout": 120000
-}
