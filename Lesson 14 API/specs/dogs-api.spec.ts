@@ -1,9 +1,10 @@
-
-import axios from 'axios';
 import { expect } from 'chai';
+import { ApiService } from 'services/api-service';
 
 
 describe('Check Dogs API', () => {
+
+    const api = new ApiService();
 
     let breedId: string;
     let name: string;
@@ -12,7 +13,7 @@ describe('Check Dogs API', () => {
 
     describe('Check status for GET facts', () => {
         it('Returns status code 200', async () => {
-            const response = await axios.get('https://dogapi.dog/api/v1/facts?number=1');
+            const response = await api.getData('/v1/facts?number=1');
             expect(response.status).to.equal(200);
             expect(response.data).to.not.be.empty;
             expect(response.data.success).to.be.true;
@@ -21,9 +22,8 @@ describe('Check Dogs API', () => {
 
     describe('Check for GET breeds', () => {
         it('Returns status code 200', async () => {
-            const response = await axios.get('https://dogapi.dog/api/v2/breeds?page[size]=10');
+            const response = await api.getData('/v2/breeds?page[size]=10');
             const obj = response.data;
-            console.log(obj.data);
             expect(response.status).to.equal(200);
             expect(response.data).to.not.be.empty;
             expect(obj.data.length).to.equal(10);
@@ -33,7 +33,7 @@ describe('Check Dogs API', () => {
         });
 
         it('Get breed by Id', async () => {
-            const response = await axios.get(`https://dogapi.dog/api/v2/breeds/${breedId}`);
+            const response = await api.getData(`/v2/breeds/${breedId}`);
             const obj = response.data;
             expect(response.status).to.equal(200);
             expect(response.data).to.not.be.empty;
@@ -44,7 +44,7 @@ describe('Check Dogs API', () => {
 
     describe('Check status for GET groups', () => {
         it('Returns status code 200', async () => {
-            const response = await axios.get('https://dogapi.dog/api/v2/groups');
+            const response = await api.getData('/v2/groups');
             const obj = response.data;
             expect(response.status).to.equal(200);
             expect(obj).to.not.be.empty;
@@ -54,7 +54,7 @@ describe('Check Dogs API', () => {
         });
 
         it('Get group by Id', async () => {
-            const response = await axios.get(`https://dogapi.dog/api/v2/groups/${groupId}`);
+            const response = await api.getData(`/v2/groups/${groupId}`);
             const obj = response.data;
             expect(response.status).to.equal(200);
             expect(obj.data.id).to.equal(groupId);
