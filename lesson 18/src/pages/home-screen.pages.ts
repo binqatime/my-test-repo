@@ -2,7 +2,6 @@ import { Page, Locator, expect } from '@playwright/test';
 
 export class HomeScreenPage {
 
-    public constructor(private readonly page: Page) {}
 
     public get goToBasketButton(): Locator {
         return this.page.locator('#cart');
@@ -10,14 +9,6 @@ export class HomeScreenPage {
 
     public get loginButton(): Locator {
         return this.page.locator('div[class="right-col"] a[class="login account-link"]');
-    }
-
-    public async goToBasketPage(): Promise<void> {
-        await this.goToBasketButton.click();
-    }
-
-    public async goToLoginPage(): Promise<void> {
-        await this.loginButton.click();
     }
 
     public get cartItemsCounter(): Locator {
@@ -32,11 +23,21 @@ export class HomeScreenPage {
         return this.page.locator('[class="container welcome"] h1');
     }
 
+    public constructor(private readonly page: Page) {}
+
     public async verifyTitle(expectedTitle: string): Promise<void> {
         const text = await this.welcomeTitle.textContent();
         console.log(text);
 
         await expect(this.page).toHaveTitle(expectedTitle);
+    }
+
+    public async goToBasketPage(): Promise<void> {
+        await this.goToBasketButton.click();
+    }
+
+    public async goToLoginPage(): Promise<void> {
+        await this.loginButton.click();
     }
 
 }

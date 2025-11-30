@@ -9,7 +9,7 @@ test('Open Liki website home page', async ({ page }) => {
 
     const homePage = new HomeScreenPage(page);
 
-    homePage.verifyTitle('Пошук ліків в аптеках Києва та України — доставка ліків додому');
+    await homePage.verifyTitle('Пошук ліків в аптеках Києва та України — доставка ліків додому');
     await expect(homePage.searchField).toBeVisible();
     await expect(homePage.goToBasketButton).toBeVisible();
     await expect(homePage.cartItemsCounter).toHaveText('0');
@@ -20,8 +20,8 @@ test('Open and verify empty basket state', async ({ page }) => {
     const basketPage = new BasketPage(page);
 
     await page.goto('https://liki24.com/uk/');
-    homePage.goToBasketPage();
-    basketPage.verifyTitle('Кошик');
+    await homePage.goToBasketPage();
+    await basketPage.verifyTitle('Кошик');
     await expect(basketPage.emptyBasketImage).toBeVisible();
     await expect(basketPage.emptyBasketMessage).toHaveText('Ваш кошик порожній');
     await expect(basketPage.backToHomePageButton).toBeVisible();
@@ -34,9 +34,9 @@ test('Open login page', async ({ page }) => {
     const loginPage = new LoginPage(page);
 
     await page.goto('https://liki24.com/uk/');
-    homePage.goToLoginPage();
+    await homePage.goToLoginPage();
 
     await expect(loginPage.newCustomerBlockTitle).toBeVisible();
     await expect(loginPage.newCustomerBlockDescription).toHaveText('Створення облікового запису дозволить вам відслідковувати статус замовлень, накопичувати бонуси і отримувати знижки!');
-    expect(loginPage.getLogInButton('Зареєструватись').isVisible());
+    await expect(loginPage.getLogInButton('Зареєструватись').isVisible());
 });

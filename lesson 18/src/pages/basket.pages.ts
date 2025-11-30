@@ -2,7 +2,6 @@ import { expect, Locator, Page } from '@playwright/test';
 
 export class BasketPage {
 
-    public constructor(private readonly page: Page) {}
 
     private get basketPageTitle(): Locator {
         return this.page.locator('div[class="container"] h1');
@@ -19,6 +18,8 @@ export class BasketPage {
     public get backToHomePageButton(): Locator {
         return this.page.locator('div[class="cart-empty-content"] a');
     }
+
+    public constructor(private readonly page: Page) {}
 
     public async goBackToHomePage(): Promise<void> {
         await this.backToHomePageButton.click();
