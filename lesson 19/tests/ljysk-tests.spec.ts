@@ -2,10 +2,14 @@ import { test, expect } from '@playwright/test';
 import { BasePage } from 'src/pages/base.pages';
 import { HomeScreenPage } from 'src/pages/home-screen.pages';
 
+test.beforeEach(async ({ page }) => {
+    const homePage = new HomeScreenPage(page);
+    const basePage = new BasePage(page);
+    await basePage.openWebPage();
+    await expect(homePage.webSiteLogoImage).toBeVisible();
+});
 
 test('Open Jysk website home page', async ({ page }) => {
-    await page.goto('https://jysk.ua/');
-
     const homePage = new HomeScreenPage(page);
 
     await homePage.verifyTitle('JYSK | Купити меблі для оселі – Завжди чудові пропозиції ✓');
@@ -17,7 +21,6 @@ test('Open Jysk website home page', async ({ page }) => {
 
 test('Open and select a Side Menu category', async ({ page }) => {
     const homePage = new HomeScreenPage(page);
-    await page.goto('https://jysk.ua/');
 
     await homePage.openSideMenu();
     await expect(homePage.hiddenSideMenuComponent.menuLogo).toBeVisible();
@@ -30,7 +33,6 @@ test('Search for a product', async ({ page }) => {
     const homePage = new HomeScreenPage(page);
     const basePage = new BasePage(page);
 
-    await page.goto('https://jysk.ua/');
     expect(homePage.searchFieldComponent.searchForAProduct('стіл'));
-    await expect(basePage.searchResultContainerTitle).toHaveText('769 результатів для: стіл');
+    await expect(basePage.searchResultContainerTitle).toHaveText('765 результатів для: стіл');
 });

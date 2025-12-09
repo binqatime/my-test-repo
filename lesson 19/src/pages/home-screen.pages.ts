@@ -9,6 +9,10 @@ export class HomeScreenPage {
         return this.page.locator('div a[aria-label="Меню"]');
     }
 
+    public get webSiteLogoImage(): Locator {
+        return this.page.locator('div[class="logo-wrapper my-3 my-md-5"] img');
+    }
+
     public get profileButton(): Locator {
         return this.page.locator('#profile-link');
     }

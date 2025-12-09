@@ -1,4 +1,4 @@
-import { Locator, Page } from '@playwright/test';
+import { expect, Locator, Page } from '@playwright/test';
 
 export class BasePage {
 
@@ -7,4 +7,9 @@ export class BasePage {
     }
 
     public constructor(private readonly page: Page) {}
+
+    public async openWebPage(): Promise<void> {
+        await this.page.goto('https://jysk.ua/');
+        expect(this.page.url()).toContain('jysk.ua');
+    }
 }
