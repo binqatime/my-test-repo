@@ -35,6 +35,9 @@ jobs:
         run: npx playwright install --with-deps chromium
         working-directory: ${{ env.BUILD_FOLDER }}
 
+      # - name: Clean allure-results directory
+      #   run: rm -rf allure-results
+
       - name: Run Playwright tests
         run: npm run test
         working-directory: ${{ env.BUILD_FOLDER }}
@@ -55,7 +58,8 @@ jobs:
 
       - name: Generate Allure Single-file report
         run: |
-          npx allure generate allure-results --single-file --clean -o allure-report-single-file
+          npx allure generate allure-results -o allure-report --clean --single-file
+        working-directory: ${{ env.BUILD_FOLDER }}
 
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
