@@ -6,13 +6,23 @@ on:
   pull_request:
     branches: [main]
 
+permissions:
+  contents: write
+  checks: write
+  pull-requests: write
+  actions: read
+  pages: write
+  id-token: write
+
 jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: lesson 22
+    env:
+      BUILD_FOLDER: ./lesson 22
+    # defaults:
+    #   run:
+    #     working-directory: lesson 22
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -21,18 +31,29 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+        working-directory: ${{ env.BUILD_FOLDER }}
 
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps chromium
+        working-directory: ${{ env.BUILD_FOLDER }}
 
       - name: Run Playwright tests
         run: npm run test
+        working-directory: ${{ env.BUILD_FOLDER }}
+
+      - uses: daun/playwright-report-summary@v3
+        if: always()
+        with:
+        report-file: ${{ env.BUILD_FOLDER }}/test-results/test-results.json
+        report-tag: "Test Results Summary"
+        job-summary: true
+        comment-on-pr: true
 
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
           name: upload mochawesome-report
-          path: lesson 22/awesome-report
+          path: ${{ env.BUILD_FOLDER }}/awesome-report
           retention-days: 30
 
       - name: Generate Allure Single-file report
@@ -43,5 +64,5 @@ jobs:
         if: ${{ !cancelled() }}
         with:
           name: upload allure-report-single-file
-          path: lesson 22/allure-results
+          path: ${{ env.BUILD_FOLDER }}/allure-results
           retention-days: 30
