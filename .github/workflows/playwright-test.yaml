@@ -61,5 +61,5 @@ jobs:
         if: ${{ !cancelled() }}
         with:
           name: upload allure-report-single-file
-          path: ${{ env.BUILD_FOLDER }}/allure-results/allure-report-single-file
+          path: ${{ env.BUILD_FOLDER }}
           retention-days: 30
