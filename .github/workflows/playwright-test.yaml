@@ -32,7 +32,7 @@ jobs:
         if: ${{ !cancelled() }}
         with:
           name: upload mochawesome-report
-          path: lesson22/awesome-report
+          path: lesson 22/awesome-report
           retention-days: 30
 
       - name: Generate Allure Single-file report
@@ -43,5 +43,5 @@ jobs:
         if: ${{ !cancelled() }}
         with:
           name: upload allure-report-single-file
-          path: lesson22/allure-results
+          path: lesson 22/allure-results
           retention-days: 30
