@@ -8,6 +8,11 @@ export class BasePage {
 
     public constructor(private readonly page: Page) {}
 
+    public async getSearchResult(): Promise<string> {
+        const result = await this.searchResultContainerTitle.textContent();
+        return result as string;
+    }
+
     public async openWebPage(): Promise<void> {
         await this.page.goto('https://jysk.ua/');
         expect(this.page.url()).toContain('jysk.ua');

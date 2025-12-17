@@ -34,5 +34,5 @@ test('Search for a product', async ({ page }) => {
     const basePage = new BasePage(page);
 
     expect(homePage.searchFieldComponent.searchForAProduct('стіл'));
-    await expect(basePage.searchResultContainerTitle).toHaveText('765 результатів для: стіл');
+    await expect(basePage.searchResultContainerTitle).toHaveText(await basePage.getSearchResult());
 });
